@@ -12,34 +12,26 @@ import jp.co.meijou.android.s221205050.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
+    private PrefDataStore prefDataStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        prefDataStore = prefDataStore.getInstance(this);
+
+        prefDataStore.getString("name")
+                        .ifPresent(name -> binding.text.setText(name));
 
         binding.button.setOnClickListener(view ->{
             var text = binding.editText.getText().toString();
             binding.text.setText(text);
         });
 
-        binding.editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //テキストが更新される直前に呼ばれる
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //文字を1つ入力された時に呼ばれる
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                //テキストが更新した後に呼ばれる
-                binding.text.setText(s.toString());
-            }
+        binding.buttonSave.setOnClickListener(view ->{
+            var text = binding.editText.getText().toString();
+            prefDataStore.setString("name",text);
         });
 
     }
