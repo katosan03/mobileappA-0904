@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.TextView;
 
 import jp.co.meijou.android.s221205050.databinding.ActivityMainBinding;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         binding.buttonSave.setOnClickListener(view ->{
             var text = binding.editText.getText().toString();
             prefDataStore.setString("name",text);
+            Log.d("Kato","save: "+ text);
         });
 
         binding.buttonReset.setOnClickListener(view ->{
@@ -39,5 +41,16 @@ public class MainActivity extends AppCompatActivity {
             prefDataStore.setString("name",null);
         });
 
+        //誰が仕込んだlogか分かるようにtagに名前を入れる
+        //Logcatから確認（package:mine tag:Kato ）
+        Log.d("Kato","onCreate text"+ binding.text.getText());
+    }
+
+    //他のアプリから戻ってきた場合の処理
+    @Override
+    protected void onStart() {
+        super.onStart();
+        prefDataStore.getString("name")
+                .ifPresent(name -> binding.text.setText(name));
     }
 }
