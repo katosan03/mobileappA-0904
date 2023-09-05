@@ -12,8 +12,7 @@ import jp.co.meijou.android.s221205050.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private int textRes = R.string.my_name;
-    private int imageRes = R.drawable.baseline_battery_1_bar_24;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
