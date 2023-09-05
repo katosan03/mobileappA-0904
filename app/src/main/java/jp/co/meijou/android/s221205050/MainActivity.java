@@ -34,5 +34,10 @@ public class MainActivity extends AppCompatActivity {
             prefDataStore.setString("name",text);
         });
 
+        binding.buttonReset.setOnClickListener(view ->{
+            binding.text.setText(null);
+            prefDataStore.setString("name",null);
+        });
+
     }
 }

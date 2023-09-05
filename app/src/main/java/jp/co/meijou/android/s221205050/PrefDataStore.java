@@ -11,9 +11,6 @@ import java.util.Optional;
 
 import io.reactivex.rxjava3.core.Single;
 
-
-
-
 public class PrefDataStore {
     private static PrefDataStore instance;
     private final RxDataStore<Preferences> dataStore;
@@ -47,8 +44,6 @@ public class PrefDataStore {
         dataStore.updateDataAsync(prefsIn -> {
                     var mutablePreferences = prefsIn.toMutablePreferences();
                     var prefKey = PreferencesKeys.stringKey(key);
-
-
 
                     mutablePreferences.set(prefKey, value);
                     return Single.just(mutablePreferences);
