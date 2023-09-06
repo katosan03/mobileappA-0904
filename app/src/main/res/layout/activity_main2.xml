@@ -9,7 +9,7 @@
         android:id="@+id/buttonMeiji"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="明示的Intent"
+        android:text="明示的 Intent"
         android:layout_marginTop="24dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,7 +19,7 @@
         android:id="@+id/buttonAnmoku"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="暗黙的Intent"
+        android:text="暗黙的 Intent"
         app:layout_constraintStart_toEndOf="@+id/buttonMeiji"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/buttonMeiji" />
