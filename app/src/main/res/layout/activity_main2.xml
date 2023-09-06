@@ -38,10 +38,34 @@
         android:id="@+id/editTextName"
         android:layout_width="162dp"
         android:layout_height="50dp"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="24dp"
         android:text=""
-        android:textSize="24dp"
+        android:textSize="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonAnmoku" />
+
+    <TextView
+        android:id="@+id/textResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginStart="40dp"
+        android:text="Result: "
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextName"
+        tools:layout_editor_absoluteX="52dp" />
+
+    <Button
+        android:id="@+id/buttonKidou"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="64dp"
+        android:text="起動"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonSousin" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
