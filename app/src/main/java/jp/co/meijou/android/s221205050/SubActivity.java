@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import java.util.Optional;
+
 import jp.co.meijou.android.s221205050.databinding.ActivitySubBinding;
 import jp.co.meijou.android.s221205050.databinding.ActivityMain3Binding;
 
@@ -14,5 +16,9 @@ public class SubActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySubBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        Optional.ofNullable(getIntent().getStringExtra("text"))
+                .ifPresent(text -> binding.textView.setText(text));
     }
+
 }

@@ -5,6 +5,7 @@ package jp.co.meijou.android.s221205050;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import jp.co.meijou.android.s221205050.databinding.ActivityMain2Binding;
@@ -24,6 +25,19 @@ public class MainActivity2 extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //暗黙的Intent
+        binding.buttonAnmoku.setOnClickListener(view ->{
+            var intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://www.yahoo.co.jp"));
+            startActivity(intent);
+        });
 
+        //文字を送信
+        binding.buttonSousin.setOnClickListener(view ->{
+            var intent = new Intent(this,SubActivity.class);
+            intent.putExtra("text",binding.editTextName.getText().toString());
+            startActivity(intent);
+        });
     }
 }
