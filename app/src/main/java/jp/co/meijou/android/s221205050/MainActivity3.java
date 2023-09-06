@@ -21,7 +21,5 @@ public class MainActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMain3Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        binding.textView2.setVisibility(View.GONE);
     }
 }
