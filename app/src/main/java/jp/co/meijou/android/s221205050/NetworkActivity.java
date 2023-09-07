@@ -36,6 +36,9 @@ public class NetworkActivity extends AppCompatActivity {
         binding = ActivityNetworkBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        getImage("https://placehold.jp/3d4070/ffffff/500x500.png?text=A%26B");
+
+        //ボタンが押されたら文字列を取得しImage内に表示
         binding.buttonImage.setOnClickListener(view ->{
             var text = binding.textUrl.getText().toString();
             var url = Uri.parse("https://placehold.jp/500x500.png")
@@ -45,8 +48,6 @@ public class NetworkActivity extends AppCompatActivity {
                     .toString();
             getImage(url);
         });
-
-        //"https://placehold.jp/400x400.png"
     }
 
     private void getImage(String url){
