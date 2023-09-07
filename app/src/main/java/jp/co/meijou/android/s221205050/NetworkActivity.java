@@ -3,6 +3,8 @@ package jp.co.meijou.android.s221205050;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
 import com.squareup.moshi.JsonAdapter;
@@ -26,15 +28,31 @@ public class NetworkActivity extends AppCompatActivity {
     private final JsonAdapter<Gist> gistJsonAdapter = moshi.adapter(Gist.class);
 
     private ActivityNetworkBinding binding;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityNetworkBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.buttonImage.setOnClickListener(view ->{
+            var text = binding.textUrl.getText().toString();
+            var url = Uri.parse("https://placehold.jp/500x500.png")
+                    .buildUpon()
+                    .appendQueryParameter("text", text)
+                    .build()
+                    .toString();
+            getImage(url);
+        });
+
+        //"https://placehold.jp/400x400.png"
+    }
+
+    private void getImage(String url){
         // リクエスト先にgistを指定
         var request = new Request.Builder()
-                .url("https://gist.stoic.jp/okhttp.json")
+                .url(url)
                 .build();
 
         // 非同期通信でリクエスト
@@ -46,18 +64,9 @@ public class NetworkActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                 //通信に成功したら呼ばれる
-
-                // レスポンスボディをGist型に変換
-                var gist = gistJsonAdapter.fromJson(response.body().source());
-                // 中身の取り出し
-                Optional.ofNullable(gist)
-                        .map(g -> g.files.get("OkHttp.txt"))
-                        .ifPresent(gistFile -> {
-                            // UIスレッド以外で更新するとクラッシュするので、UIスレッド上で実行させる
-                            runOnUiThread(() -> binding.textNet.setText(gistFile.content));
-                        });
+                var bitmap = BitmapFactory.decodeStream(response.body().byteStream());
+                runOnUiThread(() -> binding.imageView.setImageBitmap(bitmap));
             }
         });
-
     }
 }
